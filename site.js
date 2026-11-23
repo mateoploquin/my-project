@@ -3,7 +3,7 @@
 // Booking link for every element marked data-book. Paste your Google Calendar
 // appointment schedule link here (calendar.app.google/... or
 // calendar.google.com/calendar/appointments/schedules/...).
-var FOCO_BOOKING_URL = "";
+var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hys4-vYH0p6JiP1E88CDM4xvwd8mkeZA96j-dxtdYf2SvU6gEb1Xh38McmitKabGKI6x2yvz_";
 
 (function () {
   var NS = "http://www.w3.org/2000/svg";
