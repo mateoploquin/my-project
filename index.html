@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foco — AI for LatAm's back office</title>
+  <meta name="description" content="Foco puts AI to work in the back office of LatAm's mid-market companies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    // Pick the language before first paint: saved choice, else browser language.
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem("foco-lang"); } catch (e) {}
+      if (lang !== "en" && lang !== "es") {
+        lang = (navigator.language || "").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+      }
+      document.documentElement.setAttribute("data-lang", lang);
+      document.documentElement.setAttribute("lang", lang);
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --surface: #ece7dc;
+      --ink: #161512;
+      --muted: #5f5b52;
+      --line: #d6d0c3;
+      --accent: #d9481f;
+      --accent-ink: #ffffff;
+      --node: #161512;
+      --max: 1120px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #12110f;
+        --surface: #1c1b18;
+        --ink: #f1ede4;
+        --muted: #a29d92;
+        --line: #2f2d29;
+        --accent: #f0643a;
+        --accent-ink: #12110f;
+        --node: #f1ede4;
+      }
+    }
+    :root[data-theme="dark"] {
+      --bg: #12110f;
+      --surface: #1c1b18;
+      --ink: #f1ede4;
+      --muted: #a29d92;
+      --line: #2f2d29;
+      --accent: #f0643a;
+      --accent-ink: #12110f;
+      --node: #f1ede4;
+    }
+
+    /* Language switching: show only the active language. */
+    html[data-lang="en"] [data-l="es"],
+    html[data-lang="es"] [data-l="en"] { display: none !important; }
+
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+    .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 19px; letter-spacing: -0.01em; }
+    .logo-mark { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--ink); position: relative; flex-shrink: 0; }
+    .logo-mark::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-links { display: flex; gap: 24px; font-size: 15px; color: var(--muted); }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--ink); }
+    .lang {
+      display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px;
+      background: var(--surface);
+    }
+    .lang button {
+      font: inherit; font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+      border: 0; background: transparent; color: var(--muted);
+      padding: 4px 12px; border-radius: 999px; cursor: pointer;
+    }
+    .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+    .lang button:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    /* Hero */
+    .hero { padding-block: 96px 80px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center; }
+    .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 20px; }
+    h1 { font-size: clamp(44px, 6.4vw, 80px); line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 28px; }
+    h1 em { color: var(--accent); }
+    .lede { font-size: 19px; color: var(--muted); max-width: 34em; margin: 0 0 36px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--ink); color: var(--bg);
+      padding: 14px 24px; border-radius: 999px; font-weight: 500; text-decoration: none;
+      transition: transform .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-accent { background: var(--accent); color: var(--accent-ink); }
+    .brain { width: 100%; height: auto; display: block; }
+    .brain .edge { stroke: var(--line); stroke-width: 1.5; }
+    .brain .edge-hot { stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 4 5; animation: flow 1.6s linear infinite; }
+    .brain .n { fill: var(--bg); stroke: var(--node); stroke-width: 1.5; }
+    .brain .core { fill: var(--accent); }
+    .brain .ring { fill: none; stroke: var(--accent); stroke-width: 1.5; opacity: .35; }
+    .brain text { fill: var(--muted); font-family: "Inter", sans-serif; font-size: 12px; font-weight: 500; }
+    .brain .core-label { fill: var(--accent-ink); font-size: 13px; font-weight: 600; }
+    @keyframes flow { to { stroke-dashoffset: -18; } }
+    @media (prefers-reduced-motion: reduce) { .brain .edge-hot { animation: none; } .btn { transition: none; } }
+
+    /* Sections */
+    section { border-top: 1px solid var(--line); }
+    .section { padding-block: 96px; }
+    .label { font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 24px; }
+    h2 { font-size: clamp(34px, 4.4vw, 54px); line-height: 1.08; letter-spacing: -0.015em; margin: 0; }
+
+    .idea { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; }
+    .idea p { font-size: 20px; margin: 0 0 20px; }
+    .idea p:last-child { margin-bottom: 0; }
+    .idea strong { font-weight: 600; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; color: var(--muted); background: var(--surface); }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; list-style: none; padding: 0; }
+    .step { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 32px 28px; display: flex; flex-direction: column; }
+    .step-num { font-size: 56px; line-height: 1; color: var(--accent); margin-bottom: 28px; }
+    .step h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; }
+    .step p { margin: 0; color: var(--muted); font-size: 16px; }
+    .step .tag { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--ink); }
+
+    .mission { text-align: center; padding-block: 120px; }
+    .mission h2 { font-size: clamp(38px, 5.6vw, 72px); max-width: 16em; margin: 0 auto 40px; }
+    .mission h2 em { color: var(--accent); }
+
+    footer { border-top: 1px solid var(--line); padding: 32px 0; color: var(--muted); font-size: 14px; }
+    .foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-block: 64px 56px; gap: 40px; }
+      .hero-art { max-width: 420px; }
+      .idea { grid-template-columns: 1fr; gap: 28px; }
+      .steps { grid-template-columns: 1fr; }
+      .section { padding-block: 72px; }
+      .mission { padding-block: 88px; }
+    }
+    @media (max-width: 640px) {
+      .wrap { padding: 0 16px; }
+      .nav-links { display: none; }
+      .idea p { font-size: 18px; }
+      .lede { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Foco">
+      <span class="logo-mark" aria-hidden="true"></span>Foco
+    </a>
+    <div class="nav-right">
+      <nav class="nav-links">
+        <a href="#idea"><span data-l="en">The idea</span><span data-l="es">La idea</span></a>
+        <a href="#how"><span data-l="en">How it works</span><span data-l="es">Cómo funciona</span></a>
+        <a href="#mission"><span data-l="en">Mission</span><span data-l="es">Misión</span></a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language / Idioma">
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="es" aria-pressed="false">ES</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">
+        <span data-l="en">AI for LatAm's mid-market</span>
+        <span data-l="es">IA para la empresa mediana latinoamericana</span>
+      </p>
+      <h1 class="serif">
+        <span data-l="en">Foco puts AI to work in the <em>back office</em> of LatAm's mid-market companies.</span>
+        <span data-l="es">Foco pone la IA a trabajar en la <em>operación</em> de las empresas medianas de Latinoamérica.</span>
+      </h1>
+      <p class="lede">
+        <span data-l="en">We map how your business really runs, build AI pilots on your own data in days, and hand them off to your team.</span>
+        <span data-l="es">Mapeamos cómo funciona realmente tu negocio, construimos pilotos de IA con tus propios datos en días y se los entregamos a tu equipo.</span>
+      </p>
+      <a class="btn btn-accent" href="#contact">
+        <span data-l="en">Talk to us</span><span data-l="es">Hablemos</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+
+    <div class="hero-art">
+      <svg class="brain" viewBox="0 0 420 380" role="img" aria-labelledby="brain-title">
+        <title id="brain-title">Company brain: WhatsApp, Excel, people and systems connected to Foco</title>
+        <!-- edges -->
+        <line class="edge" x1="210" y1="190" x2="80" y2="70"/>
+        <line class="edge" x1="210" y1="190" x2="350" y2="80"/>
+        <line class="edge" x1="210" y1="190" x2="60" y2="230"/>
+        <line class="edge" x1="210" y1="190" x2="360" y2="250"/>
+        <line class="edge" x1="210" y1="190" x2="140" y2="330"/>
+        <line class="edge" x1="210" y1="190" x2="290" y2="335"/>
+        <line class="edge" x1="80" y1="70" x2="60" y2="230"/>
+        <line class="edge" x1="350" y1="80" x2="360" y2="250"/>
+        <line class="edge" x1="140" y1="330" x2="290" y2="335"/>
+        <line class="edge-hot" x1="210" y1="190" x2="80" y2="70"/>
+        <line class="edge-hot" x1="210" y1="190" x2="360" y2="250"/>
+        <line class="edge-hot" x1="210" y1="190" x2="140" y2="330"/>
+        <!-- core -->
+        <circle class="ring" cx="210" cy="190" r="62"/>
+        <circle class="core" cx="210" cy="190" r="44"/>
+        <text class="core-label" x="210" y="194" text-anchor="middle">Foco</text>
+        <!-- nodes -->
+        <circle class="n" cx="80" cy="70" r="9"/>
+        <text x="80" y="48" text-anchor="middle">WhatsApp</text>
+        <circle class="n" cx="350" cy="80" r="9"/>
+        <text x="350" y="58" text-anchor="middle">Excel</text>
+        <circle class="n" cx="60" cy="230" r="9"/>
+        <text x="60" y="258" text-anchor="middle"><tspan data-l="en">Email</tspan><tspan data-l="es">Correo</tspan></text>
+        <circle class="n" cx="360" cy="250" r="9"/>
+        <text x="360" y="278" text-anchor="middle">ERP</text>
+        <circle class="n" cx="140" cy="330" r="9"/>
+        <text x="140" y="360" text-anchor="middle"><tspan data-l="en">Your team</tspan><tspan data-l="es">Tu equipo</tspan></text>
+        <circle class="n" cx="290" cy="335" r="9"/>
+        <text x="290" y="365" text-anchor="middle"><tspan data-l="en">Know-how</tspan><tspan data-l="es">Know-how</tspan></text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Idea -->
+  <section id="idea">
+    <div class="wrap section idea">
+      <div>
+        <p class="label"><span data-l="en">The idea</span><span data-l="es">La idea</span></p>
+        <h2 class="serif">
+          <span data-l="en">A company brain for how work really gets done.</span>
+          <span data-l="es">Un cerebro de empresa para cómo se hace realmente el trabajo.</span>
+        </h2>
+      </div>
+      <div>
+        <p data-l="en">LatAm's mid-market runs on <strong>WhatsApp, Excel, and people who know how things really get done.</strong></p>
+        <p data-l="es">Las empresas medianas de Latinoamérica funcionan con <strong>WhatsApp, Excel y personas que saben cómo se hacen realmente las cosas.</strong></p>
+        <p data-l="en">Foco captures that know-how in a company brain: a live map of how the business actually operates, built into our platform. Then we automate on top of it.</p>
+        <p data-l="es">Foco captura ese conocimiento en un cerebro de empresa: un mapa vivo de cómo opera realmente el negocio, integrado en nuestra plataforma. Después automatizamos sobre esa base.</p>
+        <div class="chips">
+          <span class="chip"><span data-l="en">Live operations map</span><span data-l="es">Mapa vivo de la operación</span></span>
+          <span class="chip"><span data-l="en">Built on your data</span><span data-l="es">Con tus propios datos</span></span>
+          <span class="chip"><span data-l="en">Automation on top</span><span data-l="es">Automatización encima</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="wrap section">
+      <p class="label"><span data-l="en">How it works</span><span data-l="es">Cómo funciona</span></p>
+      <h2 class="serif">
+        <span data-l="en">From first conversation to an AI-native team.</span>
+        <span data-l="es">De la primera conversación a un equipo nativo en IA.</span>
+      </h2>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num serif">01</span>
+          <h3><span data-l="en">Map</span><span data-l="es">Mapear</span></h3>
+          <p data-l="en">Our FDEs and deployment strategists sit with your team and scope where AI pays off first.</p>
+          <p data-l="es">Nuestros FDEs y estrategas de implementación se sientan con tu equipo y definen dónde la IA rinde primero.</p>
+          <span class="tag"><span data-l="en">On site, with your people</span><span data-l="es">En terreno, con tu gente</span></span>
+        </li>
+        <li class="step">
+          <span class="step-num serif">02</span>
+          <h3>Sprint</h3>
+          <p data-l="en">We build working pilots in 1–5 day sprints, on your own data, embedded with your team.</p>
+          <p data-l="es">Construimos pilotos funcionales en sprints de 1 a 5 días, con tus propios datos y junto a tu equipo.</p>
+          <span class="tag"><span data-l="en">1–5 day sprints</span><span data-l="es">Sprints de 1 a 5 días</span></span>
+        </li>
+        <li class="step">
+          <span class="step-num serif">03</span>
+          <h3><span data-l="en">Hand off</span><span data-l="es">Traspasar</span></h3>
+          <p data-l="en">We roll out what works, onboard your team to the platform, and train your people to be AI-native. You end up owning it, not depending on us.</p>
+          <p data-l="es">Desplegamos lo que funciona, incorporamos a tu equipo a la plataforma y formamos a tu gente para que sea nativa en IA. Terminas siendo dueño de la solución, sin depender de nosotros.</p>
+          <span class="tag"><span data-l="en">You own it</span><span data-l="es">La solución es tuya</span></span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section id="mission">
+    <div class="wrap mission" id="contact">
+      <p class="label"><span data-l="en">Our mission</span><span data-l="es">Nuestra misión</span></p>
+      <h2 class="serif">
+        <span data-l="en">Make LatAm competitive, <em>one operation at a time.</em></span>
+        <span data-l="es">Hacer a Latinoamérica más competitiva, <em>una operación a la vez.</em></span>
+      </h2>
+      <!-- TODO: replace with Foco's real contact address or booking link -->
+      <a class="btn" href="mailto:hola@example.com">
+        <span data-l="en">Talk to us</span><span data-l="es">Hablemos</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="year">2026</span> Foco</span>
+    <span data-l="en">Built in Latin America.</span>
+    <span data-l="es">Hecho en Latinoamérica.</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll("[data-set-lang]");
+    var meta = document.querySelector('meta[name="description"]');
+    var titles = { en: "Foco — AI for LatAm's back office", es: "Foco — IA para la operación en Latinoamérica" };
+    var descs = {
+      en: "Foco puts AI to work in the back office of LatAm's mid-market companies.",
+      es: "Foco pone la IA a trabajar en la operación de las empresas medianas de Latinoamérica."
+    };
+    function setLang(lang, save) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang);
+      document.title = titles[lang];
+      if (meta) meta.setAttribute("content", descs[lang]);
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.setLang === lang)); });
+      if (save) { try { localStorage.setItem("foco-lang", lang); } catch (e) {} }
+    }
+    buttons.forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.setLang, true); });
+    });
+    setLang(root.getAttribute("data-lang") || "en", false);
+    document.getElementById("year").textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>
