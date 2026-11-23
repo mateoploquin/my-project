@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-en="Industries — Foco" data-es="Industrias — Foco">Industries — Foco</title>
+  <meta name="description"
+        data-en="Foco brings AI to the back office of LatAm's healthcare, manufacturing and logistics companies."
+        data-es="Foco lleva la IA a la operación de empresas de salud, manufactura y logística en Latinoamérica."
+        content="Foco brings AI to the back office of LatAm's healthcare, manufacturing and logistics companies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem("foco-lang"); } catch (e) {}
+      if (lang !== "en" && lang !== "es") lang = (navigator.language || "").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+      document.documentElement.setAttribute("data-lang", lang);
+      document.documentElement.setAttribute("lang", lang);
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .page-hero { position: relative; padding-block: 104px 72px; overflow: hidden; }
+    .page-hero .display { max-width: 11em; margin-bottom: 36px; }
+    .page-hero .lead { max-width: 34em; }
+
+    .jump { margin-top: 64px; }
+    .jump a { text-decoration: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: background .15s ease; }
+    .jump a:hover { background: var(--surface); }
+    .jump .big { font-size: clamp(22px, 2.2vw, 30px); letter-spacing: -0.025em; }
+    .jump .mono { color: var(--muted); }
+
+    .industry { padding-block: 112px; border-top: 1px solid var(--line); }
+    .ind-head { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: stretch; margin-bottom: 56px; }
+    .ind-head .lead { margin-top: 26px; max-width: 32em; }
+    .ind-head .who { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-2); }
+    .ind-art { position: relative; min-height: 380px; border-radius: 14px; overflow: hidden; color: var(--on-brand); }
+    .ind-art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .ind-art .num { position: absolute; left: 22px; top: 18px; opacity: .8; }
+
+    .uses-grid .cell h3 { font-size: 21px; margin-top: 30px; }
+
+    .sprint { margin-top: 28px; }
+    .sprint-title { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 0; color: var(--muted); }
+    .sprint .cell { background: var(--surface); }
+    .sprint .cell .day { color: var(--accent); }
+    .sprint .cell p.step { color: var(--ink); font-size: 17px; margin-top: 18px; }
+
+    @media (max-width: 1000px) {
+      .ind-head { grid-template-columns: 1fr; gap: 36px; }
+      .ind-art { min-height: 260px; }
+      .industry { padding-block: 80px; }
+      .page-hero { padding-block: 72px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="announce mono">
+  <span class="dot" aria-hidden="true"></span>
+  <span data-l="en">Built for Latin America's real industries · Healthcare · Manufacturing · Logistics</span>
+  <span data-l="es">Hecho para las industrias reales de Latinoamérica · Salud · Manufactura · Logística</span>
+</div>
+
+<header class="site">
+  <div class="wrap nav">
+    <a class="logo" href="./" aria-label="Foco home">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+        <circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.4"/>
+        <circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <circle cx="11" cy="11" r="2.4" fill="currentColor"/>
+      </svg>
+      Foco
+    </a>
+    <nav class="nav-links">
+      <a href="industries.html" aria-current="page"><span data-l="en">Industries</span><span data-l="es">Industrias</span></a>
+      <a href="./#how"><span data-l="en">How we work</span><span data-l="es">Cómo trabajamos</span></a>
+      <a href="./#mission"><span data-l="en">Mission</span><span data-l="es">Misión</span></a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language / Idioma">
+        <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-set-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="btn" href="#contact" data-book>
+        <span data-l="en">Book a call</span><span data-l="es">Agendar</span>
+        <span class="ic" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= Hero ================= -->
+  <section class="page-hero">
+    <div class="gridbg" aria-hidden="true"></div>
+    <div class="wrap" style="position:relative">
+      <p class="label mono"><span data-l="en">Industries</span><span data-l="es">Industrias</span></p>
+      <h1 class="display">
+        <span data-l="en">Empowering the industries that move Latin America.</span>
+        <span data-l="es">Potenciando las industrias que mueven Latinoamérica.</span>
+      </h1>
+      <p class="lead">
+        <span data-l="en">Hospitals, plants and fleets are the backbone of the region — and they still run on phones, chats and spreadsheets. Foco brings AI to the work that keeps them running.</span>
+        <span data-l="es">Hospitales, plantas y flotas son la columna vertebral de la región, y todavía funcionan con teléfonos, chats y planillas. Foco lleva la IA al trabajo que las mantiene en marcha.</span>
+      </p>
+
+      <nav class="cells cells-3 jump" aria-label="Industries">
+        <a href="#healthcare"><span><span class="mono">01</span><br><span class="big"><span data-l="en">Healthcare</span><span data-l="es">Salud</span></span></span><span aria-hidden="true">↓</span></a>
+        <a href="#manufacturing"><span><span class="mono">02</span><br><span class="big"><span data-l="en">Manufacturing</span><span data-l="es">Manufactura</span></span></span><span aria-hidden="true">↓</span></a>
+        <a href="#logistics"><span><span class="mono">03</span><br><span class="big"><span data-l="en">Logistics</span><span data-l="es">Logística</span></span></span><span aria-hidden="true">↓</span></a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ================= 01 Healthcare ================= -->
+  <section class="industry" id="healthcare">
+    <div class="wrap">
+      <div class="ind-head">
+        <div>
+          <p class="label mono">01 · <span data-l="en">Healthcare</span><span data-l="es">Salud</span></p>
+          <h2 class="title">
+            <span data-l="en">Less admin between your team and your patients.</span>
+            <span data-l="es">Menos trámites entre tu equipo y tus pacientes.</span>
+          </h2>
+          <p class="lead">
+            <span data-l="en">Clinics, labs and medical distributors lose hours to scheduling, insurer paperwork and billing done by phone, WhatsApp and spreadsheets. We automate the back office so your people can focus on care.</span>
+            <span data-l="es">Clínicas, laboratorios y distribuidores médicos pierden horas en agendamiento, trámites con aseguradoras y facturación por teléfono, WhatsApp y planillas. Automatizamos la operación para que tu gente se enfoque en atender.</span>
+          </p>
+          <p class="who mono"><span data-l="en">Clinics · Diagnostic labs · Hospitals · Medical distributors</span><span data-l="es">Clínicas · Laboratorios · Hospitales · Distribuidores médicos</span></p>
+        </div>
+        <div class="ind-art t-ember">
+          <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g stroke="#fff" stroke-opacity=".16" stroke-width="1.2">
+              <path d="M40 60h12M46 54v12M120 60h12M126 54v12M200 60h12M206 54v12M280 60h12M286 54v12M360 60h12M366 54v12"/>
+              <path d="M40 270h12M46 264v12M120 270h12M126 264v12M200 270h12M206 264v12M280 270h12M286 264v12M360 270h12M366 264v12"/>
+            </g>
+            <path d="M0 175h120l16-34 20 78 22-112 20 98 14-30h188" fill="none" stroke="#fff" stroke-opacity=".85" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="212" cy="175" r="5" fill="#fff"/>
+          </svg>
+          <span class="num mono">01 / 03</span>
+        </div>
+      </div>
+
+      <div class="cells cells-4 uses-grid">
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Scheduling</span><span data-l="es">Agendamiento</span></p>
+          <h3><span data-l="en">Appointments over WhatsApp</span><span data-l="es">Citas por WhatsApp</span></h3>
+          <p><span data-l="en">Booking, confirmations, reminders and rescheduling handled in the chat patients already use.</span><span data-l="es">Reservas, confirmaciones, recordatorios y reagendamientos en el chat que tus pacientes ya usan.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Insurers</span><span data-l="es">Aseguradoras</span></p>
+          <h3><span data-l="en">Pre-authorizations &amp; claims</span><span data-l="es">Autorizaciones y reclamos</span></h3>
+          <p><span data-l="en">Requests drafted from the patient file, sent, and followed up until approved.</span><span data-l="es">Solicitudes armadas desde la ficha del paciente, enviadas y con seguimiento hasta su aprobación.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Billing</span><span data-l="es">Facturación</span></p>
+          <h3><span data-l="en">Billing &amp; collections</span><span data-l="es">Facturación y cobranza</span></h3>
+          <p><span data-l="en">Invoices, payments and insurer remittances reconciled automatically, with exceptions flagged.</span><span data-l="es">Facturas, pagos y liquidaciones de aseguradoras conciliadas automáticamente, con las excepciones marcadas.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Supplies</span><span data-l="es">Insumos</span></p>
+          <h3><span data-l="en">Inventory &amp; purchasing</span><span data-l="es">Inventario y compras</span></h3>
+          <p><span data-l="en">Stock tracked across sites and replenishment orders ready before you run out.</span><span data-l="es">Stock controlado entre sedes y órdenes de reposición listas antes de quedarte sin insumos.</span></p>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-title mono"><span><span data-l="en">A typical first sprint</span><span data-l="es">Un primer sprint típico</span></span><span><span data-l="en">5 days</span><span data-l="es">5 días</span></span></div>
+        <div class="cells cells-3">
+          <div class="cell"><span class="day mono"><span data-l="en">Day 1</span><span data-l="es">Día 1</span></span><p class="step"><span data-l="en">Map the pre-authorization flow with your admissions team.</span><span data-l="es">Mapeamos el flujo de autorizaciones con tu equipo de admisión.</span></p></div>
+          <div class="cell"><span class="day mono"><span data-l="en">Day 3</span><span data-l="es">Día 3</span></span><p class="step"><span data-l="en">Pilot drafting requests straight from the patient file.</span><span data-l="es">Piloto que arma las solicitudes directo desde la ficha.</span></p></div>
+          <div class="cell"><span class="day mono"><span data-l="en">Day 5</span><span data-l="es">Día 5</span></span><p class="step"><span data-l="en">Your team reviews and sends — no more retyping.</span><span data-l="es">Tu equipo revisa y envía, sin volver a digitar.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 02 Manufacturing ================= -->
+  <section class="industry" id="manufacturing">
+    <div class="wrap">
+      <div class="ind-head">
+        <div>
+          <p class="label mono">02 · <span data-l="en">Manufacturing</span><span data-l="es">Manufactura</span></p>
+          <h2 class="title">
+            <span data-l="en">Keep the plant moving, not the paperwork.</span>
+            <span data-l="es">Que se mueva la planta, no el papeleo.</span>
+          </h2>
+          <p class="lead">
+            <span data-l="en">Orders arrive by WhatsApp and email, purchasing lives in spreadsheets, and production reports are rebuilt by hand every week. We connect it all to your ERP and automate the busywork.</span>
+            <span data-l="es">Los pedidos llegan por WhatsApp y correo, las compras viven en planillas y los reportes de producción se rehacen a mano cada semana. Conectamos todo con tu ERP y automatizamos el trabajo repetitivo.</span>
+          </p>
+          <p class="who mono"><span data-l="en">Food &amp; beverage · Packaging · Metalworking · Consumer goods</span><span data-l="es">Alimentos y bebidas · Envases · Metalmecánica · Consumo masivo</span></p>
+        </div>
+        <div class="ind-art t-ink">
+          <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g stroke="#fff" stroke-opacity=".08"><path d="M80 0v340M160 0v340M240 0v340M320 0v340"/></g>
+            <g fill="#fff">
+              <rect x="40" y="96" width="150" height="16" rx="2" fill-opacity=".85"/>
+              <rect x="200" y="96" width="90" height="16" rx="2" fill-opacity=".25"/>
+              <rect x="80" y="132" width="210" height="16" rx="2" fill-opacity=".25"/>
+              <rect x="40" y="168" width="70" height="16" rx="2" fill-opacity=".25"/>
+              <rect x="120" y="168" width="190" height="16" rx="2" fill="#e0521f"/>
+              <rect x="160" y="204" width="130" height="16" rx="2" fill-opacity=".85"/>
+              <rect x="40" y="240" width="110" height="16" rx="2" fill-opacity=".25"/>
+              <rect x="160" y="240" width="200" height="16" rx="2" fill-opacity=".25"/>
+            </g>
+            <path d="M250 70v210" stroke="#e0521f" stroke-width="1.5" stroke-dasharray="3 4"/>
+          </svg>
+          <span class="num mono">02 / 03</span>
+        </div>
+      </div>
+
+      <div class="cells cells-4 uses-grid">
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Orders</span><span data-l="es">Pedidos</span></p>
+          <h3><span data-l="en">Order intake</span><span data-l="es">Toma de pedidos</span></h3>
+          <p><span data-l="en">Orders from WhatsApp, email and PDFs read, validated and entered into your ERP.</span><span data-l="es">Pedidos de WhatsApp, correo y PDF leídos, validados e ingresados a tu ERP.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Purchasing</span><span data-l="es">Compras</span></p>
+          <h3><span data-l="en">POs &amp; invoice matching</span><span data-l="es">Órdenes de compra y facturas</span></h3>
+          <p><span data-l="en">Supplier invoices checked against purchase orders and receipts before anyone pays.</span><span data-l="es">Facturas de proveedores cruzadas con órdenes de compra y recepciones antes de pagar.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Production</span><span data-l="es">Producción</span></p>
+          <h3><span data-l="en">Production &amp; quality reports</span><span data-l="es">Reportes de producción y calidad</span></h3>
+          <p><span data-l="en">Shift, output and scrap data consolidated into the report your managers need each morning.</span><span data-l="es">Datos de turnos, producción y mermas consolidados en el reporte que tus gerentes necesitan cada mañana.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Quotes</span><span data-l="es">Cotizaciones</span></p>
+          <h3><span data-l="en">Faster quoting</span><span data-l="es">Cotizaciones más rápidas</span></h3>
+          <p><span data-l="en">Quotes built from your price lists, costs and past jobs in minutes, not days.</span><span data-l="es">Cotizaciones armadas con tus listas de precios, costos y trabajos anteriores en minutos, no días.</span></p>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-title mono"><span><span data-l="en">A typical first sprint</span><span data-l="es">Un primer sprint típico</span></span><span><span data-l="en">5 days</span><span data-l="es">5 días</span></span></div>
+        <div class="cells cells-3">
+          <div class="cell"><span class="day mono"><span data-l="en">Day 1</span><span data-l="es">Día 1</span></span><p class="step"><span data-l="en">Map how orders travel from WhatsApp to the ERP.</span><span data-l="es">Mapeamos cómo viajan los pedidos de WhatsApp al ERP.</span></p></div>
+          <div class="cell"><span class="day mono"><span data-l="en">Day 3</span><span data-l="es">Día 3</span></span><p class="step"><span data-l="en">Pilot reading and entering real orders, side by side with sales.</span><span data-l="es">Piloto leyendo e ingresando pedidos reales, junto al equipo comercial.</span></p></div>
+          <div class="cell"><span class="day mono"><span data-l="en">Day 5</span><span data-l="es">Día 5</span></span><p class="step"><span data-l="en">Sales approves; the ERP updates itself.</span><span data-l="es">Ventas aprueba y el ERP se actualiza solo.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 03 Logistics ================= -->
+  <section class="industry" id="logistics">
+    <div class="wrap">
+      <div class="ind-head">
+        <div>
+          <p class="label mono">03 · <span data-l="en">Logistics</span><span data-l="es">Logística</span></p>
+          <h2 class="title">
+            <span data-l="en">Every shipment tracked, every customer updated.</span>
+            <span data-l="es">Cada envío con seguimiento, cada cliente informado.</span>
+          </h2>
+          <p class="lead">
+            <span data-l="en">Dispatch runs on calls and group chats, customers ask "where's my order?" all day, and delivery documents pile up before billing. We automate the coordination so your team handles only the exceptions.</span>
+            <span data-l="es">El despacho funciona con llamadas y grupos de chat, los clientes preguntan todo el día «¿dónde está mi pedido?» y los documentos de entrega se acumulan antes de facturar. Automatizamos la coordinación para que tu equipo se ocupe solo de las excepciones.</span>
+          </p>
+          <p class="who mono"><span data-l="en">Carriers · 3PLs · Distribution centers · Last-mile fleets</span><span data-l="es">Transportistas · Operadores 3PL · Centros de distribución · Última milla</span></p>
+        </div>
+        <div class="ind-art t-sand">
+          <svg viewBox="0 0 400 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g fill="#fff" fill-opacity=".12">
+              <circle cx="60" cy="60" r="1.6"/><circle cx="140" cy="40" r="1.6"/><circle cx="330" cy="70" r="1.6"/><circle cx="90" cy="290" r="1.6"/><circle cx="350" cy="270" r="1.6"/><circle cx="220" cy="300" r="1.6"/>
+            </g>
+            <path d="M40 250C110 250 110 120 190 120S270 210 360 110" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round"/>
+            <circle cx="40" cy="250" r="7" fill="none" stroke="#fff" stroke-width="2"/>
+            <circle cx="190" cy="120" r="7" fill="none" stroke="#fff" stroke-width="2"/>
+            <circle cx="360" cy="110" r="9" fill="#e0521f"/>
+            <rect x="262" y="150" width="22" height="14" rx="2" fill="#fff"/>
+          </svg>
+          <span class="num mono">03 / 03</span>
+        </div>
+      </div>
+
+      <div class="cells cells-4 uses-grid">
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Tracking</span><span data-l="es">Seguimiento</span></p>
+          <h3><span data-l="en">Track &amp; trace updates</span><span data-l="es">Seguimiento de envíos</span></h3>
+          <p><span data-l="en">Customers get proactive status updates and answers on WhatsApp, around the clock.</span><span data-l="es">Tus clientes reciben avisos de estado y respuestas por WhatsApp, a toda hora.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Dispatch</span><span data-l="es">Despacho</span></p>
+          <h3><span data-l="en">Dispatch &amp; carrier coordination</span><span data-l="es">Despacho y coordinación</span></h3>
+          <p><span data-l="en">Loads assigned, drivers confirmed and changes communicated without the phone tag.</span><span data-l="es">Cargas asignadas, conductores confirmados y cambios comunicados sin perseguir a nadie por teléfono.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Documents</span><span data-l="es">Documentos</span></p>
+          <h3><span data-l="en">Proof of delivery &amp; documents</span><span data-l="es">Comprobantes y documentos</span></h3>
+          <p><span data-l="en">Delivery notes, PODs and invoices captured from photos and matched for billing.</span><span data-l="es">Guías, comprobantes de entrega y facturas capturados desde fotos y cruzados para facturar.</span></p>
+        </div>
+        <div class="cell">
+          <p class="label mono"><span data-l="en">Audit</span><span data-l="es">Auditoría</span></p>
+          <h3><span data-l="en">Freight invoice audit</span><span data-l="es">Auditoría de fletes</span></h3>
+          <p><span data-l="en">Carrier invoices checked against agreed rates and actual trips before you pay.</span><span data-l="es">Facturas de transportistas revisadas contra tarifas acordadas y viajes reales antes de pagar.</span></p>
+        </div>
+      </div>
+
+      <div class="sprint">
+        <div class="sprint-title mono"><span><span data-l="en">A typical first sprint</span><span data-l="es">Un primer sprint típico</span></span><span><span data-l="en">5 days</span><span data-l="es">5 días</span></span></div>
+        <div class="cells cells-3">
+          <div class="cell"><span class="day mono"><span data-l="en">Day 1</span><span data-l="es">Día 1</span></span><p class="step"><span data-l="en">Map how status questions reach your team today.</span><span data-l="es">Mapeamos cómo llegan hoy las consultas de estado a tu equipo.</span></p></div>
+          <div class="cell"><span class="day mono"><span data-l="en">Day 3</span><span data-l="es">Día 3</span></span><p class="step"><span data-l="en">Pilot answering customers on WhatsApp from live tracking data.</span><span data-l="es">Piloto respondiendo a clientes por WhatsApp con datos de seguimiento en vivo.</span></p></div>
+          <div class="cell"><span class="day mono"><span data-l="en">Day 5</span><span data-l="es">Día 5</span></span><p class="step"><span data-l="en">Your team steps in only for real exceptions.</span><span data-l="es">Tu equipo solo interviene en las excepciones reales.</span></p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <div class="closing">
+    <section class="stage" id="contact">
+      <svg class="contours" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMin slice" aria-hidden="true" data-contours="600,10"></svg>
+      <div class="wrap closing-inner">
+        <p class="label mono"><span data-l="en">Don't see your industry?</span><span data-l="es">¿No ves tu industria?</span></p>
+        <h2 class="title">
+          <span data-l="en">If it runs on WhatsApp and Excel, we can help.</span>
+          <span data-l="es">Si funciona con WhatsApp y Excel, podemos ayudar.</span>
+        </h2>
+        <a class="btn btn-light" href="#contact" data-book>
+          <span data-l="en">Book a call</span><span data-l="es">Agenda una llamada</span>
+          <span class="ic" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.4"/></svg></span>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="./" aria-label="Foco home">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/><circle cx="11" cy="11" r="2.4" fill="currentColor"/></svg>
+          <span style="color:var(--ink)">Foco</span>
+        </a>
+        <p><span data-l="en">AI for the back office of LatAm's mid-market.</span><span data-l="es">IA para la operación de la empresa mediana latinoamericana.</span></p>
+      </div>
+      <div>
+        <h4 class="mono"><span data-l="en">Industries</span><span data-l="es">Industrias</span></h4>
+        <ul>
+          <li><a href="#healthcare"><span data-l="en">Healthcare</span><span data-l="es">Salud</span></a></li>
+          <li><a href="#manufacturing"><span data-l="en">Manufacturing</span><span data-l="es">Manufactura</span></a></li>
+          <li><a href="#logistics"><span data-l="en">Logistics</span><span data-l="es">Logística</span></a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="mono">Foco</h4>
+        <ul>
+          <li><a href="./#how"><span data-l="en">How we work</span><span data-l="es">Cómo trabajamos</span></a></li>
+          <li><a href="./#mission"><span data-l="en">Mission</span><span data-l="es">Misión</span></a></li>
+          <li><a href="#contact" data-book><span data-l="en">Book a call</span><span data-l="es">Agendar llamada</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom mono">
+      <span>© <span id="year">2026</span> Foco</span>
+      <span><span data-l="en">Built in Latin America</span><span data-l="es">Hecho en Latinoamérica</span></span>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
