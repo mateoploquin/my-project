@@ -29,13 +29,13 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
     svg.appendChild(g);
   });
 
-  // Booking links: open the calendar in a new tab once a URL is set.
+  // Booking links: open the calendar in the same tab once a URL is set
+  // (new tabs get blocked by in-app browsers like LinkedIn or WhatsApp).
   var url = (FOCO_BOOKING_URL || "").trim();
   if (url) {
     document.querySelectorAll("[data-book]").forEach(function (a) {
       a.setAttribute("href", url);
-      a.setAttribute("target", "_blank");
-      a.setAttribute("rel", "noopener");
+      a.removeAttribute("target");
     });
   }
 
