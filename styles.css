@@ -291,3 +291,34 @@ footer.site { padding-block: 56px 40px; color: var(--muted); font-size: 14px; }
   .closing-inner { padding-block: 96px; }
   .tile-art { aspect-ratio: 4 / 3; }
 }
+
+/* ---------- Booking dialog (embedded Google Calendar) ---------- */
+dialog.book {
+  width: min(1040px, calc(100vw - 32px)); height: min(880px, calc(100dvh - 32px));
+  max-width: none; max-height: none; margin: auto; padding: 0;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  background: var(--surface); color: var(--ink);
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, .55);
+  flex-direction: column;
+}
+dialog.book[open] { display: flex; }
+dialog.book::backdrop { background: rgba(15, 14, 12, .55); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.book-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 20px 24px 18px; border-bottom: 1px solid var(--line); }
+.book-head .label { margin: 0 0 8px; }
+.book-title { margin: 0; font-size: 24px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.15; }
+.book-close {
+  flex-shrink: 0; width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 8px; background: transparent; color: var(--ink);
+}
+.book-close:hover { border-color: var(--ink); }
+.book-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.book-body { position: relative; flex: 1; min-height: 0; background: #fff; }
+.book-body iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.book-loading { position: absolute; inset: 0; margin: 0; display: grid; place-items: center; color: #8b857b; }
+dialog.book.is-loaded .book-loading { display: none; }
+body.book-open { overflow: hidden; }
+@media (max-width: 640px) {
+  dialog.book { width: 100vw; height: 100dvh; border: 0; border-radius: 0; }
+  .book-head { padding: 16px 16px 14px; }
+  .book-title { font-size: 20px; }
+}
