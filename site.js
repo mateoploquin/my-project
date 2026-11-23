@@ -10,7 +10,7 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
 
   // Topographic contour rings converging on a focal point.
   // <svg data-contours="cx,cy"> with a 1200x700 viewBox.
-  document.querySelectorAll("svg[data-contours]").forEach(function (svg) {
+  function drawContours(svg) {
     var c = svg.getAttribute("data-contours").split(",").map(Number);
     var g = document.createElementNS(NS, "g");
     g.setAttribute("class", "focal");
@@ -27,7 +27,8 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
       (i < 4 ? g : svg).appendChild(e);
     }
     svg.appendChild(g);
-  });
+  }
+  document.querySelectorAll("svg[data-contours]").forEach(drawContours);
 
   // Booking: every [data-book] opens the Google Calendar booking page embedded
   // in an on-page dialog, so visitors never leave the site. The plain link
@@ -41,22 +42,36 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
       dialog = document.createElement("dialog");
       dialog.className = "book";
       dialog.setAttribute("aria-labelledby", "book-title");
-      dialog.innerHTML =
-        '<div class="book-head">' +
-          '<div>' +
-            '<p class="label mono"><span data-l="en">Intro call · 30 min</span><span data-l="es">Llamada inicial · 30 min</span></p>' +
-            '<h2 class="book-title" id="book-title"><span data-l="en">Book a call with Foco</span><span data-l="es">Agenda una llamada con Foco</span></h2>' +
-          '</div>' +
-          '<button type="button" class="book-close" aria-label="Close / Cerrar">' +
-            '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12" stroke="currentColor" stroke-width="1.6"/></svg>' +
-          '</button>' +
-        '</div>' +
-        '<div class="book-body">' +
-          '<p class="book-loading mono"><span data-l="en">Loading calendar…</span><span data-l="es">Cargando calendario…</span></p>' +
-          '<iframe title="Book a call with Foco"></iframe>' +
-        '</div>';
+      dialog.innerHTML = `
+        <aside class="book-panel">
+        <svg class="contours" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMax slice" aria-hidden="true" data-contours="600,690"></svg>
+        <span class="logo"><svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/><circle cx="11" cy="11" r="2.4" fill="currentColor"/></svg>Foco</span>
+        <div class="book-intro">
+        <p class="label mono"><span data-l="en">Intro call · 30 min</span><span data-l="es">Llamada inicial · 30 min</span></p>
+        <h2 class="book-title" id="book-title"><span data-l="en">Book a call with Foco</span><span data-l="es">Agenda una llamada con Foco</span></h2>
+        <p class="book-sub"><span data-l="en">Talk directly with the engineers who would build it.</span><span data-l="es">Habla directo con los ingenieros que lo construirían.</span></p>
+        <ol class="book-points">
+        <li><span class="mono">01</span><span data-l="en">How your operation runs today</span><span data-l="es">Cómo funciona hoy tu operación</span></li>
+        <li><span class="mono">02</span><span data-l="en">Where AI pays off first</span><span data-l="es">Dónde la IA rinde primero</span></li>
+        <li><span class="mono">03</span><span data-l="en">What a first sprint looks like</span><span data-l="es">Cómo sería un primer sprint</span></li>
+        </ol>
+        </div>
+        <p class="book-foot mono"><span data-l="en">Video call · Google Meet</span><span data-l="es">Videollamada · Google Meet</span></p>
+        </aside>
+        <div class="book-main">
+        <div class="book-bar">
+        <p class="label mono"><span data-l="en">Pick a time</span><span data-l="es">Elige un horario</span></p>
+        <button type="button" class="book-close" aria-label="Close / Cerrar"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        </div>
+        <div class="book-body">
+        <p class="book-loading mono"><span data-l="en">Loading calendar…</span><span data-l="es">Cargando calendario…</span></p>
+        <iframe title="Book a call with Foco"></iframe>
+        </div>
+        </div>`;
       document.body.appendChild(dialog);
       frame = dialog.querySelector("iframe");
+      drawContours(dialog.querySelector("svg[data-contours]"));
       frame.addEventListener("load", function () { dialog.classList.add("is-loaded"); });
       dialog.querySelector(".book-close").addEventListener("click", function () { dialog.close(); });
       // Click on the backdrop (outside the panel) closes it.
