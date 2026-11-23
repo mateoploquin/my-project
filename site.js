@@ -29,13 +29,54 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
     svg.appendChild(g);
   });
 
-  // Booking links: open the calendar in the same tab once a URL is set
-  // (new tabs get blocked by in-app browsers like LinkedIn or WhatsApp).
+  // Booking: every [data-book] opens the Google Calendar booking page embedded
+  // in an on-page dialog, so visitors never leave the site. The plain link
+  // stays as the href, as a fallback when dialogs or JS aren't available.
   var url = (FOCO_BOOKING_URL || "").trim();
   if (url) {
+    var embedUrl = url + (url.indexOf("?") > -1 ? "&" : "?") + "gv=true";
+    var dialog = null, frame = null;
+
+    function buildDialog() {
+      dialog = document.createElement("dialog");
+      dialog.className = "book";
+      dialog.setAttribute("aria-labelledby", "book-title");
+      dialog.innerHTML =
+        '<div class="book-head">' +
+          '<div>' +
+            '<p class="label mono"><span data-l="en">Intro call · 30 min</span><span data-l="es">Llamada inicial · 30 min</span></p>' +
+            '<h2 class="book-title" id="book-title"><span data-l="en">Book a call with Foco</span><span data-l="es">Agenda una llamada con Foco</span></h2>' +
+          '</div>' +
+          '<button type="button" class="book-close" aria-label="Close / Cerrar">' +
+            '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 2l10 10M12 2 2 12" stroke="currentColor" stroke-width="1.6"/></svg>' +
+          '</button>' +
+        '</div>' +
+        '<div class="book-body">' +
+          '<p class="book-loading mono"><span data-l="en">Loading calendar…</span><span data-l="es">Cargando calendario…</span></p>' +
+          '<iframe title="Book a call with Foco"></iframe>' +
+        '</div>';
+      document.body.appendChild(dialog);
+      frame = dialog.querySelector("iframe");
+      frame.addEventListener("load", function () { dialog.classList.add("is-loaded"); });
+      dialog.querySelector(".book-close").addEventListener("click", function () { dialog.close(); });
+      // Click on the backdrop (outside the panel) closes it.
+      dialog.addEventListener("click", function (e) { if (e.target === dialog) dialog.close(); });
+      dialog.addEventListener("close", function () { document.body.classList.remove("book-open"); });
+    }
+
+    function openBooking(e) {
+      if (typeof HTMLDialogElement !== "function") return; // fall back to the plain link
+      e.preventDefault();
+      if (!dialog) buildDialog();
+      if (!frame.getAttribute("src")) frame.setAttribute("src", embedUrl);
+      document.body.classList.add("book-open");
+      dialog.showModal();
+    }
+
     document.querySelectorAll("[data-book]").forEach(function (a) {
       a.setAttribute("href", url);
       a.removeAttribute("target");
+      a.addEventListener("click", openBooking);
     });
   }
 
