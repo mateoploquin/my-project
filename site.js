@@ -1,9 +1,12 @@
 /* Foco — shared page behaviour (language switch, booking links, contour art). */
 
-// Booking link for every element marked data-book. Paste your Google Calendar
-// appointment schedule link here (calendar.app.google/... or
-// calendar.google.com/calendar/appointments/schedules/...).
-var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hys4-vYH0p6JiP1E88CDM4xvwd8mkeZA96j-dxtdYf2SvU6gEb1Xh38McmitKabGKI6x2yvz_";
+// Cal.com event to book, as "username/event-slug" (e.g. "foco/intro-call").
+// When set, the booking window shows Cal.com, styled in Foco's colours.
+// When empty, it falls back to the Google Calendar link below.
+var FOCO_CAL_LINK = "tomas-ploquin-ebghp6/30min";
+
+// Google Calendar appointment schedule (fallback when FOCO_CAL_LINK is empty).
+var FOCO_GOOGLE_URL = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1hys4-vYH0p6JiP1E88CDM4xvwd8mkeZA96j-dxtdYf2SvU6gEb1Xh38McmitKabGKI6x2yvz_";
 
 (function () {
   var NS = "http://www.w3.org/2000/svg";
@@ -33,7 +36,8 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
   // Booking: every [data-book] opens the Google Calendar booking page embedded
   // in an on-page dialog, so visitors never leave the site. The plain link
   // stays as the href, as a fallback when dialogs or JS aren't available.
-  var url = (FOCO_BOOKING_URL || "").trim();
+  var calLink = (FOCO_CAL_LINK || "").trim().replace(/^https?:\/\/(app\.)?cal\.com\//, "");
+  var url = calLink ? "https://cal.com/" + calLink : (FOCO_GOOGLE_URL || "").trim();
   if (url) {
     var embedUrl = url + (url.indexOf("?") > -1 ? "&" : "?") + "gv=true";
     var dialog = null, frame = null;
@@ -56,7 +60,7 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
         <li><span class="mono">03</span><span data-l="en">What a first sprint looks like</span><span data-l="es">Cómo sería un primer sprint</span></li>
         </ol>
         </div>
-        <p class="book-foot mono"><span data-l="en">Video call · Google Meet</span><span data-l="es">Videollamada · Google Meet</span></p>
+        <p class="book-foot mono"><span data-l="en">30 min · Video call</span><span data-l="es">30 min · Videollamada</span></p>
         </aside>
         <div class="book-main">
         <div class="book-bar">
@@ -67,6 +71,7 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
         <div class="book-body">
         <p class="book-loading mono"><span data-l="en">Loading calendar…</span><span data-l="es">Cargando calendario…</span></p>
         <iframe title="Book a call with Foco"></iframe>
+        <div class="book-cal" id="book-cal"></div>
         </div>
         </div>`;
       document.body.appendChild(dialog);
@@ -79,11 +84,39 @@ var FOCO_BOOKING_URL = "https://calendar.google.com/calendar/appointments/schedu
       dialog.addEventListener("close", function () { document.body.classList.remove("book-open"); });
     }
 
+    // Cal.com inline embed, themed with Foco's colours and following the
+    // visitor's light/dark preference.
+    var calLoaded = false;
+    function loadCal() {
+      if (calLoaded) return;
+      calLoaded = true;
+      dialog.classList.add("is-cal");
+      (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      var dark = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches && root.getAttribute("data-theme") !== "light";
+      Cal("init", "foco", { origin: "https://cal.com" });
+      Cal.ns.foco("inline", {
+        elementOrSelector: "#book-cal",
+        calLink: calLink,
+        config: { layout: "month_view", theme: dark ? "dark" : "light" }
+      });
+      Cal.ns.foco("ui", {
+        theme: dark ? "dark" : "light",
+        hideEventTypeDetails: true,
+        layout: "month_view",
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#e0521f", "cal-brand-emphasis": "#c4441a", "cal-brand-text": "#ffffff", "cal-bg": "#ffffff", "cal-bg-muted": "#f4f2ee", "cal-bg-emphasis": "#ebe8e2" },
+          dark: { "cal-brand": "#ff9157", "cal-brand-emphasis": "#ffa673", "cal-brand-text": "#0f0e0c", "cal-bg": "#181715", "cal-bg-muted": "#1f1d1a", "cal-bg-emphasis": "#24221f" }
+        }
+      });
+      Cal.ns.foco("on", { action: "linkReady", callback: function () { dialog.classList.add("is-loaded"); } });
+    }
+
     function openBooking(e) {
       if (typeof HTMLDialogElement !== "function") return; // fall back to the plain link
       e.preventDefault();
       if (!dialog) buildDialog();
-      if (!frame.getAttribute("src")) frame.setAttribute("src", embedUrl);
+      if (calLink) loadCal();
+      else if (!frame.getAttribute("src")) frame.setAttribute("src", embedUrl);
       document.body.classList.add("book-open");
       dialog.showModal();
     }
