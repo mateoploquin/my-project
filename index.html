@@ -3,24 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-en="Foco — Custom AI for LatAm's mid-market" data-es="Foco — IA a la medida para la empresa mediana latinoamericana">Foco — Custom AI for LatAm's mid-market</title>
+  <title data-en="Mellizo — Your AI twin" data-es="Mellizo — Tu mellizo de IA">Mellizo — Your AI twin</title>
   <meta name="description"
-        data-en="A small team building custom AI into the systems LatAm's mid-market companies already use."
-        data-es="Un equipo pequeño que construye IA a la medida dentro de los sistemas que las empresas medianas de Latinoamérica ya usan."
-        content="A small team building custom AI into the systems LatAm's mid-market companies already use.">
+        data-en="Mellizo builds your team an AI twin: custom AI that learns how you work and runs inside the ERP, WhatsApp and Excel you already use."
+        data-es="Mellizo le da a tu equipo un mellizo de IA: IA a la medida que aprende cómo trabajas y opera dentro del ERP, WhatsApp y Excel que ya usas."
+        content="Mellizo builds your team an AI twin: custom AI that learns how you work and runs inside the ERP, WhatsApp and Excel you already use.">
+  <link rel="canonical" href="https://mellizoai.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 22 22%27%3E%3Ccircle cx=%278%27 cy=%2711%27 r=%276.6%27 fill=%27none%27 stroke=%27%23e0521f%27 stroke-width=%271.8%27/%3E%3Ccircle cx=%2714%27 cy=%2711%27 r=%276.6%27 fill=%27%23e0521f%27 fill-opacity=%27.35%27 stroke=%27%23e0521f%27 stroke-width=%271.8%27/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mellizo">
+  <meta property="og:url" content="https://mellizoai.com/">
+  <meta property="og:title" content="Mellizo — Your AI twin">
+  <meta property="og:description" content="Mellizo builds your team an AI twin: custom AI that learns how you work and runs inside the ERP, WhatsApp and Excel you already use.">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>
     (function () {
       var lang = null;
-      try { lang = localStorage.getItem("foco-lang"); } catch (e) {}
+      try { lang = localStorage.getItem("mellizo-lang"); } catch (e) {}
       if (lang !== "en" && lang !== "es") lang = (navigator.language || "").toLowerCase().indexOf("es") === 0 ? "es" : "en";
       document.documentElement.setAttribute("data-lang", lang);
       document.documentElement.setAttribute("lang", lang);
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
   <style>
     /* Home-only layout */
     .hero { position: relative; padding-top: 96px; overflow: hidden; }
@@ -97,13 +105,9 @@
 
 <header class="site">
   <div class="wrap nav">
-    <a class="logo" href="./" aria-label="Foco home">
-      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
-        <circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.4"/>
-        <circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
-        <circle cx="11" cy="11" r="2.4" fill="currentColor"/>
-      </svg>
-      Foco
+    <a class="logo" href="./" aria-label="Mellizo home">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="8" cy="11" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="14" cy="11" r="6.6" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1.4"/></svg>
+      Mellizo
     </a>
     <nav class="nav-links">
       <a href="industries.html"><span data-l="en">Industries</span><span data-l="es">Industrias</span></a>
@@ -130,13 +134,13 @@
     <div class="gridbg" aria-hidden="true"></div>
     <div class="wrap hero-top">
       <h1 class="display">
-        <span data-l="en">Run your operation at the forefront of AI.</span>
-        <span data-l="es">Tu operación, a la vanguardia de la IA.</span>
+        <span data-l="en">Meet your AI twin.</span>
+        <span data-l="es">Conoce a tu mellizo de IA.</span>
       </h1>
       <div class="hero-side">
         <p class="lead">
-          <span data-l="en">A small team of engineers building custom AI for LatAm's mid-market. Built into your ERP, WhatsApp and Excel. Yours to own.</span>
-          <span data-l="es">Un equipo pequeño de ingenieros que construye IA a la medida para la empresa mediana latinoamericana. Dentro de tu ERP, WhatsApp y Excel. Tuya.</span>
+          <span data-l="en">Mellizo learns how your team works and takes the repetitive part off their plate, right inside your ERP, WhatsApp and Excel. Custom-built for LatAm's mid-market. Yours to own.</span>
+          <span data-l="es">Mellizo aprende cómo trabaja tu equipo y se encarga de la parte repetitiva, dentro de tu ERP, WhatsApp y Excel. Hecho a la medida para la empresa mediana latinoamericana. Tuyo.</span>
         </p>
         <div class="cta-row">
           <a class="btn" href="https://cal.com/tomas-ploquin-ebghp6/30min" data-book>
@@ -159,8 +163,8 @@
             <small>09:41 ✓✓</small>
           </div>
 
-          <div class="window" role="img" aria-label="Example: a Foco workflow turns a WhatsApp order into an ERP entry">
-            <div class="win-bar"><i></i><i></i><i></i><span class="mono"><span data-l="en">Foco · Running in your systems</span><span data-l="es">Foco · Dentro de tus sistemas</span></span></div>
+          <div class="window" role="img" aria-label="Example: your Mellizo turns a WhatsApp order into an ERP entry">
+            <div class="win-bar"><i></i><i></i><i></i><span class="mono"><span data-l="en">Mellizo · Your AI twin, at work</span><span data-l="es">Mellizo · Tu mellizo de IA, trabajando</span></span></div>
             <div class="win-body" aria-hidden="true">
               <div class="win-side">
                 <div class="on"><span data-l="en">Operations</span><span data-l="es">Operación</span></div>
@@ -202,8 +206,8 @@
 
   <!-- ================= Statement ================= -->
   <div class="wrap statement">
-    <p data-l="en">The world's leading companies already run on AI. <b>We put LatAm's mid-market at the same frontier, because that's how the region competes.</b></p>
-    <p data-l="es">Las empresas líderes del mundo ya operan con IA. <b>Llevamos a la empresa mediana latinoamericana a esa misma vanguardia, porque así compite la región.</b></p>
+    <p data-l="en">The world's leading companies already run on AI. <b>Mellizo gives every team in LatAm's mid-market an AI twin of its own, because that's how the region competes.</b></p>
+    <p data-l="es">Las empresas líderes del mundo ya operan con IA. <b>Mellizo le da a cada equipo de la empresa mediana latinoamericana su propio mellizo de IA, porque así compite la región.</b></p>
   </div>
 
   <!-- ================= Company brain ================= -->
@@ -385,11 +389,11 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="logo" href="./" aria-label="Foco home">
-          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="10" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/><circle cx="11" cy="11" r="2.4" fill="currentColor"/></svg>
-          <span style="color:var(--ink)">Foco</span>
+        <a class="logo" href="./" aria-label="Mellizo home">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true"><circle cx="8" cy="11" r="6.6" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="14" cy="11" r="6.6" fill="currentColor" fill-opacity=".3" stroke="currentColor" stroke-width="1.4"/></svg>
+          <span style="color:var(--ink)">Mellizo</span>
         </a>
-        <p><span data-l="en">Custom AI for LatAm's mid-market.</span><span data-l="es">IA a la medida para la empresa mediana latinoamericana.</span></p>
+        <p><span data-l="en">Your AI twin, built for LatAm's mid-market.</span><span data-l="es">Tu mellizo de IA, hecho para la empresa mediana latinoamericana.</span></p>
       </div>
       <div>
         <h4 class="mono"><span data-l="en">Industries</span><span data-l="es">Industrias</span></h4>
@@ -400,7 +404,7 @@
         </ul>
       </div>
       <div>
-        <h4 class="mono">Foco</h4>
+        <h4 class="mono">Mellizo</h4>
         <ul>
           <li><a href="#how"><span data-l="en">How we work</span><span data-l="es">Cómo trabajamos</span></a></li>
           <li><a href="#mission"><span data-l="en">Mission</span><span data-l="es">Misión</span></a></li>
@@ -409,12 +413,12 @@
       </div>
     </div>
     <div class="foot-bottom mono">
-      <span>© <span id="year">2026</span> Foco</span>
+      <span>© <span id="year">2026</span> Mellizo</span>
       <span><span data-l="en">Built in Latin America</span><span data-l="es">Hecho en Latinoamérica</span></span>
     </div>
   </div>
 </footer>
 
-<script src="site.js?v=6"></script>
+<script src="site.js?v=7"></script>
 </body>
 </html>
